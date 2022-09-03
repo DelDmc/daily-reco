@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% load static %}
+{% block content %}
+
+    <h2>ALL JOURNALS</h2>
+    <div>
+        <a href="{% url 'daily_reco:create_journal' %}"><button class="btn btn-primary" type = "submit">Add a New Journal</button></a>
+    </div>
+    {% for journal in journal_list %}
+    <div style="padding-top: 1vh">
+        <div class="list-group">
+            <a href=" " class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h4 class="mb-1">{{ journal.title }}</h4>
+                    <small>{{ journal.date_created|naturaltime }}</small>
+                </div>
+                <div class="box">
+                    <input type="checkbox" id="expanded">
+                    <p>{{ journal.description }}</p>
+                    <label class="btn btn-primary" for="expanded" role="button">read more</label>
+                </div>
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+    {% endblock %}
